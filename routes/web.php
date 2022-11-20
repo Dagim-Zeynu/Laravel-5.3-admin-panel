@@ -10,7 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -18,48 +17,50 @@ Route::get('/', function () {
 Auth::routes();
 
 
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 
-Route::group(['prefix'=>'admin', 'middleware'=>'auth'], function(){
     Route::get('/home', [
         'uses'=>'HomeController@index',
-        'as'=> 'home'
+        'as'=>'home'
     ]);
 
     Route::get('/post/create', [
-        'uses' => 'PostsController@create',
-        'as' => 'post.create'
+        'uses'=>'PostsController@create',
+        'as'=> 'post.create'
     ]);
+
     
     Route::post('/post/store', [
-        'uses' => 'PostsController@store',
-        'as' => 'post.store'
+        'uses'=>'PostsController@store',
+        'as'=> 'post.store'
     ]);
 
-    Route::get('catagory/create', [
-        'uses' => 'CatagoriesController@create',
-        'as' => 'catagory.create'
+    Route::get('/catagory.create', [
+        'uses'=>'CatagoriesController@create',
+        'as'=>'catagory.create'
+    ]);
+    Route::get('/catagories', [
+        'uses'=>'CatagoriesController@index',
+        'as'=>'catagories'
     ]);
 
-    Route::get('catagories', [
-        'uses' => 'CatagoriesController@index',
-        'as' => 'catagories'
+    Route::post('/catagory.store', [
+        'uses'=>'CatagoriesController@store',
+        'as'=>'catagory.store'
+    ]);
+    Route::get('/catagory/edit/{id}', [
+        'uses'=>'CatagoriesController@edit',
+        'as'=>'catagory.edit'
+    ]);
+    Route::get('/catagory/delete/{id}', [
+        'uses'=>'CatagoriesController@destroy',
+        'as'=>'catagory.delete'
     ]);
 
-    Route::post('/catagory/store', [
-        'uses' => 'CatagoriesController@create',
-        'as' => 'catagory.store'
+    Route::post('/catagory/update/{id}', [
+        'uses'=>'CatagoriesController@update',
+        'as'=>'catagory.update'
     ]);
-    Route::get('catagory/edit{id}',[
-        'uses'=> 'CatagoriesController@edit',
-        'as' => 'catagory.edit'
-    ]);
-    Route::get('catagory/destroy{id}',[
-        'uses'=> 'CatagoriesController@destroy',
-        'as' => 'catagory.delete'
-    ]);
-    Route::post('/catagory/update{id}', [
-        
-    ]);
+
 });
-
 

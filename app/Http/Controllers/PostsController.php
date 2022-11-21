@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Session;
 use App\Post;
 use App\Catagory;
 
@@ -52,7 +53,7 @@ class PostsController extends Controller
         $featured->move('uploads/posts', $featured_new_name);
 
         $post = Post::create([
-            'tilte' => $request->title,
+            'title' => $request->title,
             'content' => $request->content,
             'featured' =>'uploads/posts' .$featured_new_name,
             'catagory_id' => $request->catagory_id

@@ -27,6 +27,13 @@ class PostsController extends Controller
      */
     public function create()
     {
+        $catagories = Catagory::all();
+        if($catagories->count()==0)
+        {
+            Session::flash('info', 'you must have catagories before attemping to create a post.');
+            return redirect()->back();
+        }
+
         return view('admin.posts.create')->with('catagories', Catagory::all());
     }
 

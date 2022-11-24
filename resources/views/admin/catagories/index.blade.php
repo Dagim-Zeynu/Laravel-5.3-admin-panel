@@ -4,6 +4,9 @@
 
 @section('content')
     <div class="panel panel-default">
+    <div class="panel-heading">
+            Published catagories
+        </div>
         <div class="panel-body">
         <table class="table table-hover">
         <thead>
@@ -19,7 +22,8 @@
         </th>
         </thead>
         <tbody>
-            @foreach($catagories as $catagory)
+           @if($catagories->count()>0)
+           @foreach($catagories as $catagory)
                 <tr>
                     <td>
                         {{ $catagory->name }}
@@ -36,6 +40,11 @@
                     </td>
                 </tr>
             @endforeach
+            @else
+            <tr>
+                <th colspan="5" class="text-center">No catagory yet</th>
+            </tr>
+            @endif
         </tbody>
     </table>
         </div>

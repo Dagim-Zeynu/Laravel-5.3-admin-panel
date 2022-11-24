@@ -4,6 +4,9 @@
 
 @section('content')
     <div class="panel panel-default">
+        <div class="panel-heading">
+            trashed posts
+        </div>
         <div class="panel-body">
         <table class="table table-hover">
         <thead>
@@ -25,8 +28,9 @@
         </th>
         </thead>
         <tbody>
-            @foreach($posts as $post)
-            <tr>
+            @if($posts->count() > 0)
+             @foreach($posts as $post)
+             <tr>
                 <td><img src="{{ asset('/uploads/posts'.$post->featured) }}" alt="{{ $post->title }}" width="90px" height="50px"></td>
                 <td>{{ $post->title }}</td>
                 <td>Edit</td>
@@ -36,8 +40,13 @@
                 <td>
                     <a href="{{ route('post.kill', ['id'=> $post-> id]) }}" class="btn btn-xs btn-danger">Delete</a>
                 </td>
+             </tr>
+             @endforeach
+            @else
+            <tr>
+                <th colspan="5" class="text-center">No trashed post</th>
             </tr>
-            @endforeach
+            @endif
         </tbody>
     </table>
         </div>

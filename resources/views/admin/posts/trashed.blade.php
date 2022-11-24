@@ -18,9 +18,6 @@
             Title
         </th>
         <th>
-            Edit
-        </th>
-        <th>
             Restore
         </th>
         <th>
@@ -33,7 +30,6 @@
              <tr>
                 <td><img src="{{ asset($post->featured) }}" alt="{{ $post->title }}" width="90px" height="50px"></td>
                 <td>{{ $post->title }}</td>
-                <td>Edit</td>
                 <td>
                     <a href="{{ route('post.restore', ['id'=> $post-> id]) }}" class="btn btn-xs btn-success">Restore</a>
                 </td>

@@ -25,7 +25,7 @@
             @if($posts->count()>0)
             @foreach($posts as $post)
             <tr>
-                <td><img src="{{ asset($post->featured) }}" alt="{{ $post->title }}" width="90px" height="50px"></td>
+                <td><img src="{{ asset($post->featured) }}" alt="{{ $post->title }}" width="90px" height="60px"></td>
                 <td>{{ $post->title }}</td>
                 <td>
                 <a href="{{ route('post.edit', ['id'=> $post-> id]) }}" class="btn btn-xs btn-info">Edit</a>

@@ -5,7 +5,7 @@
 @section('content')
     <div class="panel panel-default">
         <div class="panel-heading">
-            trashed posts
+            Trashed posts
         </div>
         <div class="panel-body">
         <table class="table table-hover">
@@ -31,7 +31,7 @@
             @if($posts->count() > 0)
              @foreach($posts as $post)
              <tr>
-                <td><img src="{{ asset('/uploads/posts'.$post->featured) }}" alt="{{ $post->title }}" width="90px" height="50px"></td>
+                <td><img src="{{ asset($post->featured) }}" alt="{{ $post->title }}" width="90px" height="50px"></td>
                 <td>{{ $post->title }}</td>
                 <td>Edit</td>
                 <td>

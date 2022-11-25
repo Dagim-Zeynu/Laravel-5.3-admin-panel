@@ -131,5 +131,14 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
         'uses'=>'UsersController@not_admin',
         'as'=>'user.not.admin'
     ]);
+    Route::get('user/profile', [
+        'uses' => 'ProfileController@index',
+        'as' => 'user.profile'
+    ]);
+
+    Route::get('/user/profile/update', [
+        'user' => 'ProfileController@update',
+        'as' => 'user.profile.update'
+    ]);
 });
 

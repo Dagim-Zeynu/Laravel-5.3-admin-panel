@@ -44,8 +44,8 @@ class TagsController extends Controller
         // Tag::create([
         //     'tag' => $request->tags
         // ]);
-        $tag = new Tag;
-        $tag->tag = $request->tag;
+         $tag = new Tag;
+         $tag->tag = $request->tag;
         $tag->save();
 
         Session::flash('success', 'Tag created successfully');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Tag;
 use Session;
 use App\Post;
 use App\Catagory;
@@ -34,7 +35,8 @@ class PostsController extends Controller
             return redirect()->back();
         }
 
-        return view('admin.posts.create')->with('catagories', Catagory::all());
+        return view('admin.posts.create')->with('catagories', $catagories)
+                                         ->with('tags', Tag::all());
     }
 
     /**
@@ -45,12 +47,14 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
+        
  
         $this->validate($request, [
             'title' =>'required',
             'featured' =>'required|image',
             'content' =>'required',
-            'catagory_id' =>'required'
+            'catagory_id' =>'required',
+            'tags'=>'required'
         ]);
 
         $featured = $request->featured;
@@ -66,6 +70,7 @@ class PostsController extends Controller
             'catagory_id' => $request->catagory_id,
             'slug' => str_slug($request->title)
         ]);
+        $post->tags()->attach($request->tags);
         
 
         Session::flash('success', 'Post created successfully');
@@ -94,7 +99,9 @@ class PostsController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);
-        return view('admin.posts.edit')->with('post', $post)->with('catagories', Catagory::all());
+        return view('admin.posts.edit')->with('post', $post)
+                                       ->with('catagories', Catagory::all())
+                                       ->with('tags', Tag::all());
     }
 
     /**
@@ -131,6 +138,8 @@ class PostsController extends Controller
 
 
         $post->save();
+
+        $post->tags()->sync($request->tags);
 
         Session::flash('success', 'post updated successfully');
 

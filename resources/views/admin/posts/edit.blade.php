@@ -22,9 +22,27 @@
                     <label for="catagory">Select a Catagory</label>
                     <select name="catagory_id" id="catagory" class="form-control">
                     @foreach($catagories as $catagory)
-                        <option value="{{ $catagory->id }}">{{ $catagory->name }}</option>
+                        <option value="{{ $catagory->id }}"
+                        @if($post->catagory->id == $catagory->id)
+                          selected
+                        @endif
+                        >{{ $catagory->name }}</option>
                     @endforeach
                     </select>
+                </div>
+                <div class="form-group">
+                    <label for="tag">Select tag</label>
+                    @foreach($tags as $tag)
+                    <div class="checkbox">
+                        <label for=""><input type="checkbox" name="tags[]" id="tag" value="{{ $tag->id }}"
+                            @foreach($post->tags as $t)
+                                @if($tag->id == $t->id)
+                                    checked
+                                @endif
+                            @endforeach
+                        >{{ $tag->tag }}</label>
+                    </div>
+                    @endforeach
                 </div>
                 <div class="form-group">
                     <label for="content">Content</label>

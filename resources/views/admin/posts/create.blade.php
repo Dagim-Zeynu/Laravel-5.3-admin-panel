@@ -27,6 +27,14 @@
                     </select>
                 </div>
                 <div class="form-group">
+                    <label for="tag">Select tag</label>
+                    @foreach($tags as $tag)
+                    <div class="checkbox">
+                        <label for=""><input type="checkbox" name="tags[]" id="tag" value="{{ $tag->id }}">{{ $tag->tag }}</label>
+                    </div>
+                    @endforeach
+                </div>
+                <div class="form-group">
                     <label for="content">Content</label>
                     <textarea name="content" id="content" cols="5" rows="5" class="form-control"></textarea>
                 </div>

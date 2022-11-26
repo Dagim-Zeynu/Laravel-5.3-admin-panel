@@ -40,11 +40,13 @@
                 </div>
                 <div class="form-group">
                     <div class="text-center">
-                    <button class="btn btn-success" type="submit">
+                    <!-- <button class="btn btn-success" type="submit">
                         Update profile
-                    </button>
+                    </button> -->
+                    <input type="submit" value="Update profile" class="btn btn-success">
                     </div>
                 </div>
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
             </form>
         </div>
     </div>

@@ -9,10 +9,12 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>dagim</title>
+    
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
     <link rel="stylesheet"  href="{{ asset('css/toastr.min.css') }}">
+    @yield('styles')
 
 
     <!-- Scripts -->
@@ -145,12 +147,7 @@
         @if(Session::has('info'))
             toastr.info("{{ Session::get('info') }}")
         @endif
-
-
-
-
-
-
     </script>
+    @yield('scripts')
 </body>
 </html>

@@ -135,6 +135,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
         'uses' => 'ProfileController@index',
         'as' => 'user.profile'
     ]);
+    Route::get('user/delete/{id}', [
+        'uses' => 'UsersController@destroy',
+        'as' => 'user.delete'
+    ]);
 
     Route::get('/user/profile/update', [
         'user' => 'ProfileController@update',

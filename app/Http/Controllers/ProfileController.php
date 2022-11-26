@@ -79,12 +79,14 @@ class ProfileController extends Controller
         ]);
 
         $user = Auth::user();
-        if($request->hasFile('avatar')){
+        if($request->hasFile('avatar'))
+        {
             $avatar = $request ->avatar;
+
             $avatar_new_name = time() . $avatar->getClientOriginalName();
             $avatar->move('uploads/avatars', $avatar_new_name);
             $user ->profile->avatar = 'uploads/avatars/'. $avatar_new_name;
-            $user->profile->save();
+            $user->profile()->save();
         }
         $user->name = $request->name;
         $user->email= $request->email;
@@ -92,13 +94,14 @@ class ProfileController extends Controller
         $user->youtube = $request->youtube;
 
         $user->save();
-        $user->profile->save();
+        $user->profile()->save();
 
         if($request->has('password'))
         {
             $user->password=bcrypt($request->password);
-            //$user->save();
+            $user->save();
         }
+        $user->save();
         Session::flash('success', 'Account profile updated.');
         return redirect()->back();
     }

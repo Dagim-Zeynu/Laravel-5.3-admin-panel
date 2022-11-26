@@ -7,7 +7,7 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
-##  This project is not completed
+##  This project is completed but the updating the user have some errors please fix it.
 ##  To run this app
 - First subscribe my youtube channel `youtube.com/dagi tech`
 - Run `composer install`
